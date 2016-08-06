@@ -1,15 +1,15 @@
 package com.scodey.serberus.server;
 
+import com.scodey.serberus.common.request.Request;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-
   public Server(String[] args) {
 
   }
@@ -27,14 +27,8 @@ public class Server {
 
   private void handleConnection(Socket socket) throws IOException, InterruptedException {
     try (
-      PrintWriter writer = new PrintWriter(socket.getOutputStream());
-      BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
-
-      String value;
-      while ((value = reader.readLine()) != null) {
-        if (value.equals("")) break;
-        System.out.println(value);
-      }
+      PrintWriter writer = new PrintWriter(socket.getOutputStream())) {
+      Request request = new Request(socket);
 
       Thread.sleep(100);
       String[] response = {
@@ -48,6 +42,7 @@ public class Server {
         builder.append(line).append("\n");
       }
 
+      String value;
       try (BufferedReader htmlReader = new BufferedReader(new FileReader("htmloutput.html"))) {
         while ((value = htmlReader.readLine()) != null) {
           builder.append(value).append("\n");
@@ -56,7 +51,6 @@ public class Server {
 
       writer.write(builder.toString());
       writer.flush();
-      Thread.sleep(1000);
     }
   }
 

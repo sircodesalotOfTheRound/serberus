@@ -1,7 +1,6 @@
 package com.scodey.serberus.common.request;
 
 import com.scodey.serberus.common.exceptions.SerberusException;
-import com.scodey.serberus.common.request.header.HostNameHeaderInfo;
 import com.scodey.serberus.common.request.header.RequestHeaderInfo;
 import com.scodey.serberus.common.tools.InvertedIndex;
 import com.scodey.serberus.common.tools.parsing.Lexer;
@@ -43,7 +42,9 @@ public class Request {
 
     String value;
     while (!(value = readLine(reader)).isEmpty()) {
-      index.add(RequestHeaderInfo.headerInfoFor(value));
+      if (RequestHeaderInfo.supportsHeaderInfoFor(value)) {
+        index.add(RequestHeaderInfo.headerInfoFor(value));
+      }
     }
 
     return index;

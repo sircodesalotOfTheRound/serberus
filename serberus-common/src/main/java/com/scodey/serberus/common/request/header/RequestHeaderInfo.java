@@ -15,11 +15,18 @@ public abstract class RequestHeaderInfo {
   public String name() { return this.name; }
 
   @FunctionalInterface
-  public interface MakeRequestHeaderCallback { RequestHeaderInfo callback(Lexer lexer); }
+  public interface MakeRequestHeaderCallback { RequestHeaderInfo make(Lexer lexer); }
   private static final Map<String, MakeRequestHeaderCallback> callbacks = new HashMap<String, MakeRequestHeaderCallback>() {{
     put("Host:", HostNameHeaderInfo::new);
   }};
 
+
+  public static boolean supportsHeaderInfoFor(String text) {
+    Lexer lexer = new Lexer(text);
+    String headerKey = lexer.readWhileNot(Character::isWhitespace);
+
+    return callbacks.containsKey(headerKey);
+  }
 
   public static RequestHeaderInfo headerInfoFor(String text) {
     Lexer lexer = new Lexer(text);
@@ -28,6 +35,6 @@ public abstract class RequestHeaderInfo {
 
     return callbacks
       .get(headerKey)
-      .callback(lexer);
+      .make(lexer);
   }
 }
