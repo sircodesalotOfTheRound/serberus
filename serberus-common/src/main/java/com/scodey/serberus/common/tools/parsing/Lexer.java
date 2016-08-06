@@ -1,4 +1,4 @@
-package com.scodey.serberus.common.parsing;
+package com.scodey.serberus.common.tools.parsing;
 
 import com.scodey.serberus.common.validation.Validation;
 

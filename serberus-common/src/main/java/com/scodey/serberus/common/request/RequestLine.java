@@ -1,7 +1,6 @@
-package com.scodey.serberus.common.parsing;
+package com.scodey.serberus.common.request;
 
-import com.scodey.serberus.common.request.HttpVersion;
-import com.scodey.serberus.common.request.RequestMethod;
+import com.scodey.serberus.common.tools.parsing.Lexer;
 
 public class RequestLine {
   private final RequestMethod method;
@@ -16,14 +15,14 @@ public class RequestLine {
 
   private RequestMethod captureMethod(Lexer lexer) {
     RequestMethod method = RequestMethod.fromString(lexer.readWhileNot(Character::isWhitespace));
-    lexer.readAndAdvance(" ");
+    lexer.readAndAdvance(Character::isWhitespace);
 
     return method;
   }
 
   private String captureUri(Lexer lexer) {
     String location = lexer.readWhileNot(Character::isWhitespace);
-    lexer.readAndAdvance(" ");
+    lexer.readAndAdvance(Character::isWhitespace);
 
     return location;
   }

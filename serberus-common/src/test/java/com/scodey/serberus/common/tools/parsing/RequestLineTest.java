@@ -1,6 +1,7 @@
-package com.scodey.serberus.common.parsing;
+package com.scodey.serberus.common.tools.parsing;
 
 import com.scodey.serberus.common.request.HttpVersion;
+import com.scodey.serberus.common.request.RequestLine;
 import org.junit.Test;
 
 import static com.scodey.serberus.common.request.RequestMethod.GET;
