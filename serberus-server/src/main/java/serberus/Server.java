@@ -1,4 +1,4 @@
-package com.scodey.serberus;
+package serberus;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

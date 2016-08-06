@@ -8,8 +8,11 @@
     <artifactId>serberus</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>web-service</module>
+        <module>serberus-common</module>
+        <module>serberus-server</module>
     </modules>
 
     <dependencies>
@@ -19,6 +22,7 @@
             <version>4.12</version>
         </dependency>
     </dependencies>
+
     <build>
         <plugins>
             <plugin>

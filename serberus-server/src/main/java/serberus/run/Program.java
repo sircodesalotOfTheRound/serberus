@@ -1,6 +1,6 @@
-package com.scodey.serberus.run;
+package serberus.run;
 
-import com.scodey.serberus.Server;
+import serberus.Server;
 
 public class Program {
   public static void main(String[] args) throws Exception {
