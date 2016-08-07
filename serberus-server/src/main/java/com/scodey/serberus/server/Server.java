@@ -1,20 +1,44 @@
 package com.scodey.serberus.server;
 
+import com.scodey.serberus.common.controllers.ControllerHandle;
+import com.scodey.serberus.common.controllers.ControllerHandles;
+import com.scodey.serberus.common.reflect.JarInfo;
 import com.scodey.serberus.common.request.Request;
+import com.scodey.serberus.common.response.Response;
+import com.scodey.serberus.common.response.ResponseCode;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.scodey.serberus.common.tools.functional.Functional.stream;
 
 public class Server {
-  public Server(String[] args) {
+  private final ControllerHandles controllerHandles;
 
+  public Server(String[] args) {
+    this.controllerHandles = host(args);
   }
 
-  public void start() throws IOException, InterruptedException {
+  private ControllerHandles host(String[] args) {
+    List<ControllerHandle> handles = new ArrayList<>();
+    for (String file : args) {
+      JarInfo jarInfo = new JarInfo(new File(file));
+      handles.addAll(stream(jarInfo.classes())
+        .filter(ControllerHandle::isController)
+        .map(ControllerHandle::new)
+        .collect(Collectors.toList()));
+    }
+
+    return new ControllerHandles(handles);
+  }
+
+  private void start() throws IOException, InterruptedException {
     ServerSocket server = new ServerSocket(9090);
 
     while (true) {
@@ -26,32 +50,24 @@ public class Server {
   }
 
   private void handleConnection(Socket socket) throws IOException, InterruptedException {
-    try (
-      PrintWriter writer = new PrintWriter(socket.getOutputStream())) {
-      Request request = new Request(socket);
+    Request request = new Request(socket.getInputStream());
 
+    if (this.controllerHandles.hasHandleFor(request.uri())) {
+      Response.Builder responseBuilder = new Response.Builder(ResponseCode.OK);
+      Object responseValue = this.controllerHandles.invokeHandle(request.uri());
+      responseBuilder.println(responseValue.toString());
+
+      Response response = responseBuilder.build();
+      response.send(socket.getOutputStream());
       Thread.sleep(100);
-      String[] response = {
-        "HTTP/1.1 200 OK",
-        "Content-Type: text/html",
-        "",
-      };
+    } else {
+      Response.Builder responseBuilder = new Response.Builder(ResponseCode.NOT_FOUND);
+      responseBuilder.println("404 No Content Found");
+      Response response = responseBuilder.build();
 
-      StringBuilder builder = new StringBuilder();
-      for (String line : response) {
-        builder.append(line).append("\n");
-      }
-
-      String value;
-      try (BufferedReader htmlReader = new BufferedReader(new FileReader("htmloutput.html"))) {
-        while ((value = htmlReader.readLine()) != null) {
-          builder.append(value).append("\n");
-        }
-      }
-
-      writer.write(builder.toString());
-      writer.flush();
+      response.send(socket.getOutputStream());
     }
+
   }
 
   public static void run(String[] args) throws IOException, InterruptedException {

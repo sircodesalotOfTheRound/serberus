@@ -5,8 +5,13 @@ import com.scodey.serberus.common.annotations.Endpoint;
 
 @Controller
 public class Service {
-  @Endpoint
-  public void anEndpoint() {
-    System.out.println("endpoint executed");
+  @Endpoint("/something")
+  public Object anEndpoint() {
+    return "endpoint executed";
+  }
+
+  @Endpoint("/another")
+  public String anotherEndpoint() {
+    return "bar foo the foo bar man";
   }
 }

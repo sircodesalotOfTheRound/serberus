@@ -8,6 +8,7 @@ import com.scodey.serberus.common.validation.Validation;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
@@ -15,18 +16,14 @@ public class Request {
   private final RequestLine requestLine;
   private final InvertedIndex<Class, RequestHeaderInfo> headers;
 
-  public Request(Socket socket) {
-    BufferedReader reader = makeReader(socket);
+  public Request(InputStream inputStream) {
+    BufferedReader reader = makeReader(inputStream);
     this.requestLine = new RequestLine(new Lexer(readLine(reader)));
     this.headers = captureHeaders(reader);
   }
 
-  private BufferedReader makeReader(Socket socket) {
-    try {
-      return new BufferedReader(new InputStreamReader(socket.getInputStream()));
-    } catch (IOException ex) {
-      throw new SerberusException(ex, "Unable to make reader for input stream");
-    }
+  private BufferedReader makeReader(InputStream inputStream) {
+    return new BufferedReader(new InputStreamReader(inputStream));
   }
 
   private String readLine(BufferedReader reader) {

@@ -17,8 +17,7 @@ public class RequestTest {
 
   @Test
   public void testSimpleRequest() throws IOException {
-    Socket socket = mock(Socket.class);
-    when(socket.getInputStream()).thenReturn(new InputStream() {
+    InputStream inputStream = new InputStream() {
       int index = 0;
       String requestText = new StringBuilder()
         .append("GET /stuff HTTP/1.1").append(NEW_LINE)
@@ -34,9 +33,9 @@ public class RequestTest {
           return -1;
         }
       }
-    });
+    };
 
-    Request request = new Request(socket);
+    Request request = new Request(inputStream);
 
     assertEquals(RequestMethod.GET, request.method());
     assertEquals("/stuff", request.uri());
