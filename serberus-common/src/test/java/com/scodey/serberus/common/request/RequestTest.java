@@ -5,12 +5,9 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.Socket;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
 
 public class RequestTest {
   private static final String NEW_LINE = "\n";
@@ -24,6 +21,11 @@ public class RequestTest {
         .append("Host: localhost").append(NEW_LINE)
         .append("\n")
         .toString();
+
+      @Override
+      public int available() {
+        return requestText.length() - index;
+      }
 
       @Override
       public int read() throws IOException {

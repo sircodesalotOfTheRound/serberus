@@ -1,0 +1,59 @@
+<!doctype>
+<style>
+    span {
+        background-color: lawngreen;
+    }
+</style>
+<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function() {
+        $("#button").click(function() {
+            alert("you just clicked the button. Great");
+            $("#button").text("The button was just cliked!");
+        });
+    });
+</script>
+
+<html>
+    <head>
+        <title>This is the website</title>
+    </head>
+    <body>
+        <div>Just to make sure this changed</div>
+        <div>this is the first div</div>
+        <div>If there was a place to put a variable you would put it in the <var>var</var> tags</div>
+        <div>this is a div <span>with a span in it</span></div>
+        <div>this is a div with an <em>emphasis portion</em> in it</div>
+        <div>this is a div with an <strong>strong portion</strong> in it</div>
+        <div>There is a quote that says <q>The quick brown fox jumps over the lazy dog</q> or something like that</div>
+        <div>If you're going to use a special term, make sure to use the <dfn>dfn</dfn> element</div>
+        <div>Today is <time datetime="2016-8-7">Sunday August <sup>7th</sup> 2016</time></div>
+        <div><code>Here is some code that I want to show on my website</code></div>
+        <div><strong><samp>This the the output of that code</samp></strong></div>
+        <div>Here is a number with a 2<sub>subscript</sub></div>
+        <div>This is some text that has been <mark>marked up</mark></div>
+        <div>To close this window use <kbd>CTRL+ALT+DEL</kbd></div>
+        <div>This is a link to <a href="http://www.google.com">google</a></div>
+        <div>This is a link for sending myself an email <a href="mailto:sircodesalot@gmail.com?subject=This is the email subject">sircodesalot@gmail.com</a></div>
+        <div>This is a link to <a href="something">something</a></div>
+        <div>This is a link to the <a href="#the_footer" accesskey="k" type="text/html">footer</a></div>
+
+        <div/>
+        <div>
+            <figure>
+                <img src="https://octodex.github.com/images/pusheencat.png"/>
+                <figcaption>This is octocat. Isn't he cute.</figcaption>
+            </figure>
+        </div>
+
+        <form method="post">
+            <input type="text" name="textstuff">This is the value to submt</input>
+            <button id="button" value="This is a button"></button>
+        </form>
+
+        <footer id="the_footer">
+            <small>Here is the fine print for my website.</small>
+            <div>"Hello, World!" is taken from <cite>K and R C</cite></div>
+        </footer>
+    </body>
+</html>

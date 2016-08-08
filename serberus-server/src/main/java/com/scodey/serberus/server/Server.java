@@ -9,7 +9,6 @@ import com.scodey.serberus.common.response.ResponseCode;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -43,13 +42,17 @@ public class Server {
 
     while (true) {
       try (Socket socket = server.accept()) {
-        handleConnection(socket);
-        System.out.println("all done");
+        Thread.sleep(100);
+        Response response = buildResponse(socket);
+        response.send(socket.getOutputStream());
+
+        System.out.println(response.responseCode());
+        Thread.sleep(100);
       }
     }
   }
 
-  private void handleConnection(Socket socket) throws IOException, InterruptedException {
+  private Response buildResponse(Socket socket) throws IOException {
     Request request = new Request(socket.getInputStream());
 
     if (this.controllerHandles.hasHandleFor(request.uri())) {
@@ -57,15 +60,12 @@ public class Server {
       Object responseValue = this.controllerHandles.invokeHandle(request.uri());
       responseBuilder.println(responseValue.toString());
 
-      Response response = responseBuilder.build();
-      response.send(socket.getOutputStream());
-      Thread.sleep(100);
+      return responseBuilder.build();
     } else {
       Response.Builder responseBuilder = new Response.Builder(ResponseCode.NOT_FOUND);
       responseBuilder.println("404 No Content Found");
-      Response response = responseBuilder.build();
 
-      response.send(socket.getOutputStream());
+      return responseBuilder.build();
     }
 
   }
