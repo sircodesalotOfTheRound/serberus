@@ -1,9 +1,5 @@
 package com.scodey.serberus.common.tools;
 
-import com.scodey.serberus.common.exceptions.SerberusException;
-
-import java.util.function.Consumer;
-
 public class Safe {
   public String safeToString(Object object) {
     if (object == null) {

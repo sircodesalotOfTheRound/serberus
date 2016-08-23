@@ -55,6 +55,7 @@ public class Server {
   private Response buildResponse(Socket socket) throws IOException {
     Request request = new Request(socket.getInputStream());
 
+    System.err.println(request);
     if (this.controllerHandles.hasHandleFor(request.uri())) {
       Response.Builder responseBuilder = new Response.Builder(ResponseCode.OK);
       Object responseValue = this.controllerHandles.invokeHandle(request.uri());

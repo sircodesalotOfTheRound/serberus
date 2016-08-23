@@ -22,23 +22,11 @@ public class Request {
     this.headers = captureHeaders(reader);
   }
 
-  private BufferedReader makeReader(InputStream inputStream) {
-    return new BufferedReader(new InputStreamReader(inputStream));
-  }
-
-  private String readLine(BufferedReader reader) {
-    try {
-      return reader.readLine();
-    } catch (IOException ex) {
-      throw new SerberusException(ex, "Unable to read line");
-    }
-  }
-
   private InvertedIndex<Class, RequestHeaderInfo> captureHeaders(SocketInputStreamReader reader) {
     InvertedIndex<Class, RequestHeaderInfo> index = new InvertedIndex<>(RequestHeaderInfo::getClass);
 
-    while (reader.available()) {
-      String value = reader.readLine();
+    String value;
+    while ((value = reader.readLine()) != null) {
       if (value.isEmpty()) break;
 
       System.err.println(value);
@@ -64,5 +52,10 @@ public class Request {
   public <T extends RequestHeaderInfo> T headerFor(Class<T> type) {
     Validation.check(hasHeaderOfType(type), "Request does not contain a header for: %s", type.getName());
     return (T)headers.get(type);
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%s %s %s", method(), uri(), httpVersion());
   }
 }
