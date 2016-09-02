@@ -1,4 +1,20 @@
-/* This is a stylesheet comment, hopefully it won't break anything */
-body { background : lightcyan; width: 800px; margin: auto }
-h1 { color: maroon; text-align: center }
-p { color: gray; border: 1px solid gray; padding: 10px; }
+* {
+    font-family: Baloo Tamma;
+    margin: 0;
+    padding: 0;
+}
+
+nav {
+    float: left;
+    background: darkgray;
+}
+
+main {
+    background: lightgray;
+}
+
+footer {
+    background: gray;
+    clear: left;
+}
+

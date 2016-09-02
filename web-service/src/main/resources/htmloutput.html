@@ -2,31 +2,29 @@
 <!doctype html>
 
 <html>
-    <!--<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">-->
-
-<script  src="https://code.jquery.com/jquery-3.1.0.min.js"
-         integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
-         crossorigin="anonymous"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $("p").text("this is working");
-    })
-</script>
-<head>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>this is the title</title>
-</head>
-<body>
-<header>
-    <h1>This is the title</h1>
-
-    This has been updated maybe?
-    <nav>
-        <a href="#" accesskey="K">first</a>
-        <a href="#">second</a>
-        <a href="#">third</a>
-    </nav>
-</header>
-<p>This is the page.</p>
-</body>
+    <head>
+        <title>This is the title</title>
+        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <div>first</div> |
+            <div>second</div> |
+            <div>third</div> |
+            <div>fourth</div>
+        </nav>
+        <main>
+            <div>
+                <p class="first">This is the first a paragrah in a div.</p>
+                <p class="second">This is the second a paragrah in a div.</p>
+                <p id="third">This should float right?</p>
+                <div><p>Some stuff right here</p></div>
+                <a href="http://google.com">Google</a>
+            </div>
+        </main>
+        <footer>
+            <p id="stuff">Last item</p>
+        </footer>
+    </body>
 </html>

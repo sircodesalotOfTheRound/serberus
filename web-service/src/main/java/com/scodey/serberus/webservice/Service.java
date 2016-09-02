@@ -45,7 +45,7 @@ public class Service {
 
       String value;
       while ((value = reader.readLine()) != null) {
-        builder.append(value);
+        builder.append(value).append("\n");
       }
 
       return builder.toString();
