@@ -59,7 +59,7 @@ public class Lexer {
 
   public String readWhileNot(Predicate<Character> predicate) {
     StringBuilder builder = new StringBuilder();
-    while (!currentIs(predicate)) {
+    while (notEof() && !currentIs(predicate)) {
       builder.append(readAndAdvance());
     }
 
