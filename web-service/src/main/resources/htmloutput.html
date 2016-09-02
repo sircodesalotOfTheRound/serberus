@@ -1,23 +1,32 @@
-<!doctype>
-<style>
-    span {
-        background-color: lawngreen;
-    }
-</style>
-<script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
-<script src="https://getfirebug.com/firebug-lite.js"></script>
-<script>
-    $(document).ready(function() {
-        var display = function(text) { $("body").append("<div>" + text + "</div>") };
-        display("something or other");
-    });
-</script>
+
+<!doctype html>
 
 <html>
-    <head>
-        <title>This is the website</title>
-    </head>
-    <body>
+    <!--<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">-->
 
-    </body>
+<script  src="https://code.jquery.com/jquery-3.1.0.min.js"
+         integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+         crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("p").text("this is working");
+    })
+</script>
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>this is the title</title>
+</head>
+<body>
+<header>
+    <h1>This is the title</h1>
+
+    This has been updated maybe?
+    <nav>
+        <a href="#" accesskey="K">first</a>
+        <a href="#">second</a>
+        <a href="#">third</a>
+    </nav>
+</header>
+<p>This is the page.</p>
+</body>
 </html>

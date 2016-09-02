@@ -52,7 +52,7 @@ public class ControllerHandle {
 
   public Object invokeEndpoint(String endpoint) {
     try {
-      return safeToString(this.endpoints.get(endpoint).get(0).invoke(instance));
+      return this.endpoints.get(endpoint).get(0).invoke(instance);
     } catch (Throwable ex) {
       throw new SerberusException(ex, "Unable to invoke endpoint");
     }

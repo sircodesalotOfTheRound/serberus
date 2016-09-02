@@ -1,4 +1,4 @@
-package com.scodey.serberus.common.request.header;
+package com.scodey.serberus.common.header.request;
 
 import com.scodey.serberus.common.tools.parsing.Lexer;
 

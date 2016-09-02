@@ -59,12 +59,12 @@ public class Server {
     if (this.controllerHandles.hasHandleFor(request.uri())) {
       Response.Builder responseBuilder = new Response.Builder(ResponseCode.OK);
       Object responseValue = this.controllerHandles.invokeHandle(request.uri());
-      responseBuilder.println(responseValue.toString());
+      responseBuilder.writeContent(responseValue);
 
       return responseBuilder.build();
     } else {
       Response.Builder responseBuilder = new Response.Builder(ResponseCode.NOT_FOUND);
-      responseBuilder.println("404 No Content Found");
+      responseBuilder.writeContent("404 No Content Found");
 
       return responseBuilder.build();
     }

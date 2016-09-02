@@ -1,0 +1,4 @@
+/* This is a stylesheet comment, hopefully it won't break anything */
+body { background : lightcyan; width: 800px; margin: auto }
+h1 { color: maroon; text-align: center }
+p { color: gray; border: 1px solid gray; padding: 10px; }

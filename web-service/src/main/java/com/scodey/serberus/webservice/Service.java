@@ -2,6 +2,9 @@ package com.scodey.serberus.webservice;
 
 import com.scodey.serberus.common.annotations.Controller;
 import com.scodey.serberus.common.annotations.Endpoint;
+import com.scodey.serberus.common.content.CssContent;
+import com.scodey.serberus.common.content.HtmlContent;
+import com.scodey.serberus.common.content.HttpContent;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,8 +14,7 @@ import java.io.InputStreamReader;
 @Controller
 public class Service {
   @Endpoint("/")
-  public String mainSite() throws IOException {
-    // TODO: Reroute
+  public HttpContent mainSite() throws IOException {
     return htmlFile();
   }
 
@@ -26,10 +28,19 @@ public class Service {
     return "bar foo the foo bar man";
   }
 
+  @Endpoint("/style.css")
+  public CssContent styleSheet() throws IOException {
+     return new CssContent(loadResource("style.css"));
+  }
+
   @Endpoint("/htmlfile")
-  public String htmlFile() throws IOException {
-    InputStream htmlfile = Service.class.getClassLoader().getResource("htmloutput.html").openStream();
-    try (BufferedReader reader = new BufferedReader(new InputStreamReader(htmlfile))) {
+  public HtmlContent htmlFile() throws IOException {
+    return new HtmlContent(loadResource("htmloutput.html"));
+  }
+
+  private final String loadResource(String path) throws IOException {
+    InputStream resource = Service.class.getClassLoader().getResource(path).openStream();
+    try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource))) {
       StringBuilder builder = new StringBuilder();
 
       String value;

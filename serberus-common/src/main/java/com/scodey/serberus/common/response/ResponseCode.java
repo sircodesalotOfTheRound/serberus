@@ -18,8 +18,9 @@ public enum ResponseCode {
   public String message() { return this.message; }
   public String description() { return this.description; }
 
+  // Todo: Make this accept a renderer.
   @Override
   public String toString() {
-    return String.format("%s %s", responseCode, message);
+    return String.format("HTTP/1.1 %s %s", responseCode, message);
   }
 }

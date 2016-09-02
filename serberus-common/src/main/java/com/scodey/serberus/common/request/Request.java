@@ -1,16 +1,12 @@
 package com.scodey.serberus.common.request;
 
-import com.scodey.serberus.common.exceptions.SerberusException;
-import com.scodey.serberus.common.request.header.RequestHeaderInfo;
+import com.scodey.serberus.common.header.request.RequestHeaderInfo;
 import com.scodey.serberus.common.tools.InvertedIndex;
 import com.scodey.serberus.common.tools.parsing.Lexer;
 import com.scodey.serberus.common.tools.socket.SocketInputStreamReader;
 import com.scodey.serberus.common.validation.Validation;
 
-import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
 
 public class Request {
   private final RequestLine requestLine;
@@ -50,7 +46,7 @@ public class Request {
   }
 
   public <T extends RequestHeaderInfo> T headerFor(Class<T> type) {
-    Validation.check(hasHeaderOfType(type), "Request does not contain a header for: %s", type.getName());
+    Validation.check(hasHeaderOfType(type), "Request does not contain a request for: %s", type.getName());
     return (T)headers.get(type);
   }
 

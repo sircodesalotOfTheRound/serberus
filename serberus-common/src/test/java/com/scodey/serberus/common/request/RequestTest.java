@@ -1,6 +1,6 @@
 package com.scodey.serberus.common.request;
 
-import com.scodey.serberus.common.request.header.HostNameHeaderInfo;
+import com.scodey.serberus.common.header.request.HostNameHeaderInfo;
 import org.junit.Test;
 
 import java.io.IOException;
