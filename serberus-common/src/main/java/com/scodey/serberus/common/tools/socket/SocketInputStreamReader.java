@@ -19,7 +19,7 @@ public class SocketInputStreamReader {
     StringBuilder builder = new StringBuilder();
     int tries = 0;
 
-    while (tries++ < 3) {
+    while (tries++ < 10) {
       try {
         while (available()) {
           char value = (char) (int) unchecked(stream::read);
