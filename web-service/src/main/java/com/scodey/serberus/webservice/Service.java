@@ -29,9 +29,14 @@ public class Service {
      return new CssContent(Resources.loadResourceToString(this.getClass().getClassLoader(), "style.css"));
   }
 
+  @Endpoint("/script.js")
+  public JavascriptContent script() throws IOException {
+    return new JavascriptContent(Resources.loadResourceToString(this.getClass().getClassLoader(), "script.js"));
+  }
+
   @Endpoint("/favicon.ico")
   public IconContent favicon() throws IOException {
-    return new IconContent(this.getClass().getClassLoader(), "favicon.ico");
+    return new IconContent(Resources.loadResourceAsByteArray(this.getClass().getClassLoader(), "favicon.ico"));
   }
 
   @Endpoint("/corgi.jpg")

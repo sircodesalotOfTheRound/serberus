@@ -10,6 +10,7 @@ public class MimeTypeHeaderInfo extends ResponseHeader {
   public static MimeTypeHeaderInfo CSS = new MimeTypeHeaderInfo("text/css");
   public static MimeTypeHeaderInfo ICON = new MimeTypeHeaderInfo("image/x-icon");
   public static MimeTypeHeaderInfo IMAGE = new MimeTypeHeaderInfo("image/jpg");
+  public static MimeTypeHeaderInfo JAVASCRIPT = new MimeTypeHeaderInfo("text/javascript");
 
   private final String type;
   private MimeTypeHeaderInfo(String type) {

@@ -8,15 +8,15 @@ import com.scodey.serberus.common.tools.Resources;
 import java.io.IOException;
 
 public class IconContent extends HttpContent<byte[]> {
-  public IconContent(ClassLoader loader, String imagePath) throws IOException {
-    super(MimeTypeHeaderInfo.ICON, Resources.loadResourceAsByteArray(loader, imagePath));
+  public IconContent(byte[] data) throws IOException {
+    super(MimeTypeHeaderInfo.ICON, data, new ContentLengthHeader(data.length));
 
     super.addHeader(new ContentLengthHeader(super.content.length));
   }
 
   @Override
-  public void render(ResponseRenderer renderer) {
-
+  public void render(ResponseRenderer renderer) throws IOException {
+    renderer.write(super.content);
   }
 
   @Override
