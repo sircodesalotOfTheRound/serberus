@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.scodey.serberus.common.tools.functional.Functional.cast;
 import static com.scodey.serberus.common.tools.functional.Functional.stream;
 
 public class Server {
@@ -48,6 +49,8 @@ public class Server {
 
         System.out.println(response.responseCode());
         Thread.sleep(100);
+      } catch (Exception ex) {
+        ex.printStackTrace();
       }
     }
   }

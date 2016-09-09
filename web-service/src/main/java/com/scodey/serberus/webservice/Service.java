@@ -3,6 +3,7 @@ package com.scodey.serberus.webservice;
 import com.scodey.serberus.common.annotations.Controller;
 import com.scodey.serberus.common.annotations.Endpoint;
 import com.scodey.serberus.common.content.*;
+import com.scodey.serberus.common.tools.FileTools;
 import com.scodey.serberus.common.tools.Resources;
 
 import java.io.IOException;
@@ -11,7 +12,7 @@ import java.io.IOException;
 public class Service {
   @Endpoint("/")
   public HttpContent mainSite() throws IOException {
-    return htmlFile();
+    return new HtmlContent(FileTools.readToString("/Users/rkuhnert/Desktop/page.html"));
   }
 
   @Endpoint("/something")

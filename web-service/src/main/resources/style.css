@@ -4,6 +4,10 @@
     padding: 0;
 }
 
+image {
+    clear: left;
+}
+
 nav {
     float: left;
     background: darkgray;
