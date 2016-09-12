@@ -7,12 +7,22 @@ import com.scodey.serberus.common.tools.FileTools;
 import com.scodey.serberus.common.tools.Resources;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 @Controller
 public class Service {
   @Endpoint("/")
   public HttpContent mainSite() throws IOException {
     return new HtmlContent(FileTools.readToString("/Users/rkuhnert/Desktop/page.html"));
+  }
+
+  @Endpoint("/json.txt")
+  public JsonContent json() {
+    return new JsonContent(new HashMap<String, String>() {{
+      put("first", "1");
+      put("second", "2");
+      put("third", "3");
+    }});
   }
 
   @Endpoint("/something")
