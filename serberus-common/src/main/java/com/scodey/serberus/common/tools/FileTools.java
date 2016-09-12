@@ -10,6 +10,6 @@ public class FileTools {
   public static String readToString(String path) throws IOException {
     return Functional.reduce(new StringBuilder(),
       Files.readAllLines(Paths.get(path)).stream(),
-      StringBuilder::append).toString();
+      (builder, line) -> builder.append(line).append("\n")).toString();
   }
 }

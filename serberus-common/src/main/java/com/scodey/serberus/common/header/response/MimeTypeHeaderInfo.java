@@ -7,6 +7,7 @@ import java.io.IOException;
 public class MimeTypeHeaderInfo extends ResponseHeader {
   public static MimeTypeHeaderInfo PLAIN = new MimeTypeHeaderInfo("text/plain");
   public static MimeTypeHeaderInfo HTML = new MimeTypeHeaderInfo("text/html");
+  public static MimeTypeHeaderInfo STRICT_XML = new MimeTypeHeaderInfo("application/xhtml+xml");
   public static MimeTypeHeaderInfo CSS = new MimeTypeHeaderInfo("text/css");
   public static MimeTypeHeaderInfo ICON = new MimeTypeHeaderInfo("image/x-icon");
   public static MimeTypeHeaderInfo IMAGE = new MimeTypeHeaderInfo("image/jpg");
