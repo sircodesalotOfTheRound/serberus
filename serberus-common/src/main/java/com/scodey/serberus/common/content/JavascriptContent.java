@@ -12,15 +12,6 @@ public class JavascriptContent extends HttpContent<String> {
     super(MimeTypeHeaderInfo.JAVASCRIPT, content, new ContentLengthHeader(content.length()));
   }
 
-  public JavascriptContent(String content, ResponseHeader... headers) {
-    super(MimeTypeHeaderInfo.JAVASCRIPT,
-      content,
-      headers
-    );
-  }
-
-
-
   @Override
   public void render(ResponseRenderer renderer) throws IOException {
     renderer.println(super.content);

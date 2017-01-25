@@ -3,10 +3,6 @@ package com.scodey.serberus.webservice;
 import com.scodey.serberus.common.annotations.Controller;
 import com.scodey.serberus.common.annotations.Endpoint;
 import com.scodey.serberus.common.content.*;
-import com.scodey.serberus.common.header.response.ResponseHeader;
-import com.scodey.serberus.common.header.response.SetCookieHeader;
-import com.scodey.serberus.common.response.rendering.ResponseRenderable;
-import com.scodey.serberus.common.response.rendering.ResponseRenderer;
 import com.scodey.serberus.common.tools.FileTools;
 import com.scodey.serberus.common.tools.Resources;
 
@@ -27,16 +23,6 @@ public class Service {
       put("second", "2");
       put("third", "3");
     }});
-  }
-
-  @Endpoint("/cookie.js")
-  public HttpContent cookieJs() {
-    return new JavascriptContent("console.log(document.cookie);", new SetCookieHeader("The cookie value"));
-  }
-
-  @Endpoint("/cookie")
-  public HttpContent cookie() {
-    return new HtmlContent("<script src=\"/cookie.js\"></script><div>Something</div>");
   }
 
   @Endpoint("/something")
